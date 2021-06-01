@@ -3,7 +3,6 @@ import argparse
 
 
 def generate_diff(json1=None, json2=None):
-    '''Generates difference of two json files.'''
     parser = argparse.ArgumentParser(description='Generate diff')
     parser.add_argument('first_file')
     parser.add_argument('second_file')
@@ -33,7 +32,6 @@ def generate_diff(json1=None, json2=None):
 
 
 def dict_to_str(di):
-    '''Converts dict into string'''
     dict_as_str = ''
     for key, value in di.items():
         dict_as_str = '{0}  {1}: {2}\n'.format(dict_as_str, key, value)
