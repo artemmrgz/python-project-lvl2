@@ -1,16 +1,28 @@
+import os
 from gendiff.gendiff import generate_diff
 
+TESTS_DIR = 'tests'
+FIXTURES = 'fixtures'
 
-def test_generate_diff():
-    path1 = 'tests/fixtures/file1.json'
-    path2 = 'tests/fixtures/file2.json'
-    result = generate_diff(path1, path2)
-    expected = '''{
-  - follow: False
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: True
-}'''
-    assert result == expected
+def locate(file):
+    file_path = os.path.join(TESTS_DIR, FIXTURES, file)
+    return file_path
+
+
+def test_generate_diff_json():
+    with open(locate('expected.txt'), 'r') as file:
+        output = file.read().strip()
+        assert generate_diff(locate('file1.json'), locate('file2.json')) == output
+    with open(locate('expected2.txt'), 'r') as file2:
+        output2 = file2.read().strip()
+        assert generate_diff(locate('file3.json'), locate('empty.json')) == output2
+
+
+def test_generate_diff_yaml():
+    with open(locate('expected.txt'), 'r') as file:
+        output = file.read().strip()
+        assert generate_diff(locate('file1.yml'), locate('file2.yaml')) == output
+    with open(locate('expected2.txt'), 'r') as file2:
+        output2 = file2.read().strip()
+        assert generate_diff(locate('file3.yaml'), locate('empty.yml')) == output2
+

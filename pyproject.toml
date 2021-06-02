@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hexlet-code"
-version = "0.2.0"
+version = "0.3.0"
 description = ""
 authors = ["Artem Marhaza <artemmrgz@gmail.com>"]
 packages = [ {include = "gendiff"}, ]
@@ -8,6 +8,7 @@ packages = [ {include = "gendiff"}, ]
 [tool.poetry.dependencies]
 python = "^3.8"
 argparse = "^1.4.0"
+PyYAML = "^5.4.1"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.9.2"
