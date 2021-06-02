@@ -15,18 +15,6 @@ def cli_parser():
     return file1, file2
 
 
-def from_json(json1, json2):
-    data1 = json.load(open(json1))
-    data2 = json.load(open(json2))
-    return data1, data2
-
-
-def from_yaml(yml1, yml2):
-    data1 = yaml.safe_load(open(yml1))
-    data2 = yaml.safe_load(open(yml2))
-    return data1, data2
-
-
 def get_extension(file_name):
     return os.path.splitext(file_name)[1]
 
@@ -42,8 +30,10 @@ def is_yaml(file):
 
 def file_parser(file1, file2):
     if is_json(file1) and is_json(file2):
-        return from_json(file1, file2)
+        data1 = json.load(open(file1))
+        data2 = json.load(open(file2))
+        return data1, data2
     if is_yaml(file1) and is_yaml(file2):
-        return from_yaml(file1, file2)
-
-
+        data1 = yaml.safe_load(open(file1))
+        data2 = yaml.safe_load(open(file2))
+        return data1, data2

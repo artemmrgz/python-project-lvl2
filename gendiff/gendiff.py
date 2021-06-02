@@ -1,5 +1,3 @@
-import os
-import argparse
 from gendiff.parser import file_parser
 
 
