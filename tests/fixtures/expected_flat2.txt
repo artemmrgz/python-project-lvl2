@@ -1,6 +1,0 @@
-{
-  - follow: True
-  - host: hexlet.io
-  - proxy: None
-  - timeout: 50
-}

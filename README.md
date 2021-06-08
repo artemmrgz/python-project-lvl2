@@ -13,6 +13,9 @@ Comparison of json-files with flat structure
 Comparison of yaml-files with flat structure
 [![asciicast](https://asciinema.org/a/ytI1q3VY4ZUBmRTs1D0tuRV7I.png)](https://asciinema.org/a/ytI1q3VY4ZUBmRTs1D0tuRV7I)
 
-Comparison of files with nested structure
+Comparison of files with nested structure. Json-like output format
 [![asciicast](https://asciinema.org/a/aL6CrHoc96CIEBDNaBlXvoIAl.png)](https://asciinema.org/a/aL6CrHoc96CIEBDNaBlXvoIAl)
+
+Comparison of files with nested structure. Plain output format
+[![asciicast](https://asciinema.org/a/pzk8SQWR4lrXB1cAxz0wzGOVs)](https://asciinema.org/a/pzk8SQWR4lrXB1cAxz0wzGOVs)
 

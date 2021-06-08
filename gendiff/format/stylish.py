@@ -15,7 +15,7 @@ flags = {
 }
 
 
-def stylish(difference, level=0):  # noqa: C901
+def to_stylish(difference, level=0):  # noqa: C901
     indent = level * DEFAULT_INDENT * ' '
     diff = []
     for key, value in sorted(difference.items()):
@@ -38,6 +38,6 @@ def stylish(difference, level=0):  # noqa: C901
 def content_to_str(flag, key, value, level):
     indent = (level * DEFAULT_INDENT - FLAG_INDENT) * ' '
     if isinstance(value, dict):
-        result = stylish(value, level)
+        result = to_stylish(value, level)
         return f'{indent}{flags[flag]} {key}: {result}'
     return f'{indent}{flags[flag]} {key}: {value}'

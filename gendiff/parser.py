@@ -2,11 +2,14 @@ import os
 import json
 import yaml
 import argparse
-from gendiff import formatters
+from gendiff import format
 
 
 def formatter(string_format='stylish'):
-    formats = {'stylish': formatters.stylish}
+    formats = {
+        'stylish': format.stylish,
+        'plain': format.plain
+    }
     return formats[string_format]
 
 

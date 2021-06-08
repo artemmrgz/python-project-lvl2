@@ -1,0 +1,11 @@
+Property common.follow was added with value: 'False'
+Property common.follow.setting2 was removed
+Property common.follow.setting2.setting3 was updated. From 'True' to 'None'
+Property common.follow.setting2.setting3.setting4 was added with value: 'blah blah'
+Property common.follow.setting2.setting3.setting4.setting5 was added with value: [complex value]
+Property common.follow.setting2.setting3.setting4.setting5.setting6.doge.wow was updated. From '' to 'so much'
+Property common.follow.setting2.setting3.setting4.setting5.setting6.doge.wow.ops was added with value: 'vops'
+Property common.follow.setting2.setting3.setting4.setting5.setting6.doge.wow.ops.group1.baz was updated. From 'bas' to 'bars'
+Property common.follow.setting2.setting3.setting4.setting5.setting6.doge.wow.ops.group1.baz.nest was updated. From [complex value] to 'str'
+Property common.follow.setting2.setting3.setting4.setting5.setting6.doge.wow.ops.group1.baz.nest.group2 was removed
+Property common.follow.setting2.setting3.setting4.setting5.setting6.doge.wow.ops.group1.baz.nest.group2.group3 was added with value: [complex value]
