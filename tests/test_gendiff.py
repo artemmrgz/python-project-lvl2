@@ -1,28 +1,41 @@
 import os
+import json
 from gendiff.gendiff import generate_diff
+from gendiff.parser import parse_file
+from gendiff.formatters import stylish
 
 TESTS_DIR = 'tests'
 FIXTURES = 'fixtures'
+
 
 def locate(file):
     file_path = os.path.join(TESTS_DIR, FIXTURES, file)
     return file_path
 
 
+def diff_result(file_path1, file_path2, output_format):
+    file1 = locate(file_path1)
+    file2 = locate(file_path2)
+    return generate_diff(file1, file2, output_format)
+
+
 def test_generate_diff_json():
-    with open(locate('expected.txt'), 'r') as file:
+    with open(locate('expected_flat1.txt')) as file:
         output = file.read().strip()
-        assert generate_diff(locate('file1.json'), locate('file2.json')) == output
-    with open(locate('expected2.txt'), 'r') as file2:
-        output2 = file2.read().strip()
-        assert generate_diff(locate('file3.json'), locate('empty.json')) == output2
+        assert diff_result('file1.json', 'file2.json', stylish) == output
 
 
 def test_generate_diff_yaml():
-    with open(locate('expected.txt'), 'r') as file:
+    with open(locate('expected_flat1.txt')) as file:
         output = file.read().strip()
-        assert generate_diff(locate('file1.yml'), locate('file2.yaml')) == output
-    with open(locate('expected2.txt'), 'r') as file2:
-        output2 = file2.read().strip()
-        assert generate_diff(locate('file3.yaml'), locate('empty.yml')) == output2
+        assert diff_result('file1.yml', 'file2.yaml', stylish) == output
 
+
+def test_generate_nested_diff():
+    with open(locate('expected_nested.txt')) as file:
+        output = file.read().strip()
+        assert diff_result('nested_file1.json','nested_file2.json', stylish) == output
+
+    with open(locate('expected_nested.txt')) as file:
+        output2 = file.read().strip()
+        assert diff_result('nested_file1.yaml', 'nested_file2.yaml', stylish) == output2

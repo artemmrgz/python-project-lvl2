@@ -1,27 +1,28 @@
-from gendiff.parser import file_parser
+from gendiff.parser import parse_file
+from gendiff.constants import ADDED, CHANGED, REMOVED, NESTED, UNCHANGED
 
 
-def generate_diff(file1, file2):
-    data1, data2 = file_parser(file1, file2)
-    keys = set(data1) | set(data2)
-    diff = {}
-    for key in sorted(keys):
-        if key in data1 and key in data2:
-            if data1.get(key) == data2.get(key):
-                diff[f'  {key}'] = data1.get(key)
+def build_diff(old, new):
+    keys = set(old) | set(new)
+    difference = {}
+    for key in keys:
+        old_value = old.get(key)
+        new_value = new.get(key)
+        children = isinstance(old_value, dict) and isinstance(new_value, dict)
+        if children:
+            difference[key] = (NESTED, build_diff(old_value, new_value))
+        elif key in old and key in new:
+            if old_value == new_value:
+                difference[key] = (UNCHANGED, new_value)
             else:
-                diff[f'- {key}'] = data1.get(key)
-                diff[f'+ {key}'] = data2.get(key)
-        elif key in data1 and key not in data2:
-            diff[f'- {key}'] = data1.get(key)
+                difference[key] = (CHANGED, old_value, new_value)
+        elif key in old and key not in new:
+            difference[key] = (REMOVED, old_value)
         else:
-            diff[f'+ {key}'] = data2.get(key)
-    result = dict_to_str(diff)
-    return result
+            difference[key] = (ADDED, new_value)
+    return difference
 
 
-def dict_to_str(di):
-    dict_as_str = ''
-    for key, value in di.items():
-        dict_as_str = '{0}  {1}: {2}\n'.format(dict_as_str, key, value)
-    return '{{\n{0}}}'.format(dict_as_str)
+def generate_diff(old, new, output_format):
+    diff = build_diff(parse_file(old), parse_file(new))
+    return output_format(diff)

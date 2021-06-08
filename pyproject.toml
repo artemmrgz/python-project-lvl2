@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hexlet-code"
-version = "0.3.0"
+version = "0.4.0"
 description = ""
 authors = ["Artem Marhaza <artemmrgz@gmail.com>"]
 packages = [ {include = "gendiff"}, ]

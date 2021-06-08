@@ -1,4 +1,4 @@
-from gendiff.parser import file_parser
+from gendiff.parser import parse_file
 import os
 
 
@@ -12,8 +12,8 @@ def locate(file):
 
 
 def test_file_parser():
-    output_from_json = file_parser(locate('file1.json'), locate('file2.json'))
-    output_from_yml = file_parser(locate('file1.yml'), locate('file2.yaml'))
+    output_from_json = parse_file(locate('file1.json')), parse_file(locate('file2.json'))
+    output_from_yml = parse_file(locate('file1.yml')), parse_file(locate('file2.yaml'))
     with open(locate('file_parser_output.txt'), 'r') as file:
         output = file.read().strip()
         assert f'{output_from_json}' == output

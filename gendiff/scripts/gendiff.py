@@ -4,8 +4,10 @@ from gendiff.parser import cli_parser
 
 
 def main():
-    first_file, second_file = cli_parser()
-    result = generate_diff(first_file, second_file)
+    namespace = cli_parser()
+    result = generate_diff(namespace.first_file,
+                           namespace.second_file,
+                           namespace.format)
     print(result)
 
 
