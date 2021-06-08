@@ -5,7 +5,7 @@ from gendiff.constants import ADDED, CHANGED, REMOVED, NESTED, UNCHANGED
 def build_diff(old, new):
     keys = set(old) | set(new)
     difference = {}
-    for key in keys:
+    for key in sorted(keys):
         old_value = old.get(key)
         new_value = new.get(key)
         children = isinstance(old_value, dict) and isinstance(new_value, dict)
