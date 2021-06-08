@@ -17,5 +17,5 @@ Comparison of files with nested structure. Json-like output format
 [![asciicast](https://asciinema.org/a/aL6CrHoc96CIEBDNaBlXvoIAl.png)](https://asciinema.org/a/aL6CrHoc96CIEBDNaBlXvoIAl)
 
 Comparison of files with nested structure. Plain output format
-[![asciicast](https://asciinema.org/a/pzk8SQWR4lrXB1cAxz0wzGOVs)](https://asciinema.org/a/pzk8SQWR4lrXB1cAxz0wzGOVs)
+[![asciicast](https://asciinema.org/a/pzk8SQWR4lrXB1cAxz0wzGOVs.png)](https://asciinema.org/a/pzk8SQWR4lrXB1cAxz0wzGOVs)
 
