@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 from gendiff.gendiff import generate_diff
-from gendiff.parser import cli_parser, parse_file
+from gendiff.parser import cli_parser
 
 
 def main():
     '''Run CLI'''
     namespace = cli_parser()
-    result = generate_diff(parse_file(namespace.first_file),
-                           parse_file(namespace.second_file),
+    result = generate_diff(namespace.first_file,
+                           namespace.second_file,
                            namespace.format)
     print(result)
 

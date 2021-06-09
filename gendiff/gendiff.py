@@ -1,3 +1,5 @@
+from gendiff.parser import parse_file
+from gendiff import format
 from gendiff.constants import ADDED, CHANGED, REMOVED, NESTED, UNCHANGED
 
 
@@ -43,7 +45,22 @@ def build_diff(old, new):
     return difference
 
 
-def generate_diff(old, new, output_format):
+def formatter(string_format):
+    '''Define diff format.
+    Args:
+        string_format: Formatting option
+    Returns:
+        Formatting function
+    '''
+    formats = {
+        'stylish': format.stylish,
+        'plain': format.plain,
+        'json': format.json
+    }
+    return formats[string_format]
+
+
+def generate_diff(old, new, output_format='stylish'):
     '''Find differences in files
 
     Args:
@@ -54,5 +71,5 @@ def generate_diff(old, new, output_format):
     Returns:
         str: difference string
     '''
-    diff = build_diff(old, new)
-    return output_format(diff)
+    diff = build_diff(parse_file(old), parse_file(new))
+    return formatter(output_format)(diff)

@@ -2,24 +2,6 @@ import os
 import json
 import yaml
 import argparse
-from gendiff import format
-
-
-def formatter(string_format='stylish'):
-    '''Gets CLI parser's format.
-
-    Args:
-        string_format: Formatting option
-
-    Returns:
-        Function of parse
-    '''
-    formats = {
-        'stylish': format.stylish,
-        'plain': format.plain,
-        'json': format.json
-    }
-    return formats[string_format]
 
 
 def cli_parser():
@@ -32,7 +14,7 @@ def cli_parser():
     parser = argparse.ArgumentParser(description='Generate diff')
     parser.add_argument('first_file')
     parser.add_argument('second_file')
-    parser.add_argument('-f', '--format', default='stylish', type=formatter,
+    parser.add_argument('-f', '--format', default='stylish',
                         help='set format of output (default: stylish)')
     return parser.parse_args()
 

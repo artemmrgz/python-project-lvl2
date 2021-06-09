@@ -2,7 +2,6 @@ import os
 import json
 from gendiff.gendiff import generate_diff, build_diff
 from gendiff.parser import parse_file
-from gendiff import format
 
 
 def locate(file):
@@ -11,8 +10,8 @@ def locate(file):
 
 def diff_result(output_format):
     return generate_diff(
-        parse_file(locate('file_before.json')),
-        parse_file(locate('file_after.json')),
+        locate('file_before.json'),
+        locate('file_after.json'),
         output_format
     )
 
@@ -20,15 +19,15 @@ def diff_result(output_format):
 def test_generate_diff():
     with open(locate('expected_nested.txt')) as f:
         expected = f.read().strip()
-    assert diff_result(format.stylish) == expected
+    assert diff_result('stylish') == expected
 
     with open(locate('expected_plain.txt')) as f:
         expected = f.read().strip()
-    assert diff_result(format.plain) == expected
+    assert diff_result('plain') == expected
 
     with open(locate('expected_json.txt')) as f:
         expected = f.read().strip()
-    assert diff_result(format.json) == expected
+    assert diff_result('json') == expected
 
 
 def test_build_diff():
