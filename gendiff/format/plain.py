@@ -1,3 +1,4 @@
+from gendiff.format.stylish import edit_message
 from gendiff.constants import (
     ADDED,
     CHANGED,
@@ -82,4 +83,4 @@ def show_value(value):
     if isinstance(value, dict):
         return '[complex value]'
     else:
-        return f'\'{value}\''
+        return f'\'{edit_message(value)}\''

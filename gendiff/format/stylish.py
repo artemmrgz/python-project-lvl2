@@ -49,4 +49,14 @@ def content_to_str(flag, key, value, level):
     if isinstance(value, dict):
         result = to_stylish(value, level)
         return f'{indent}{flags[flag]} {key}: {result}'
-    return f'{indent}{flags[flag]} {key}: {value}'
+    return f'{indent}{flags[flag]} {key}: {edit_message(value)}'
+
+
+def edit_message(message):
+    if message is True:
+        return 'true'
+    if message is False:
+        return 'false'
+    if message is None:
+        return 'null'
+    return message
