@@ -1,8 +1,16 @@
-from gendiff.parser import parse_file
 from gendiff.constants import ADDED, CHANGED, REMOVED, NESTED, UNCHANGED
 
 
 def build_diff(old, new):
+    '''Build difference report
+
+    Args:
+        old (dict): dataset before changing
+        new (dict): dataset after changing
+
+    Returns:
+        difference (dict)
+    '''
     difference = {}
     removed_keys = old.keys() - new.keys()
     difference.update(
@@ -36,5 +44,15 @@ def build_diff(old, new):
 
 
 def generate_diff(old, new, output_format):
-    diff = build_diff(parse_file(old), parse_file(new))
+    '''Find differences in files
+
+    Args:
+        old (dict): dictionary from first file
+        new (dict): dictionary from second file
+        output_format: format.plain(), format.nested(), format.json()
+
+    Returns:
+        str: difference string
+    '''
+    diff = build_diff(old, new)
     return output_format(diff)

@@ -19,3 +19,6 @@ Comparison of files with nested structure. Json-like output format
 Comparison of files with nested structure. Plain output format
 [![asciicast](https://asciinema.org/a/pzk8SQWR4lrXB1cAxz0wzGOVs.png)](https://asciinema.org/a/pzk8SQWR4lrXB1cAxz0wzGOVs)
 
+Comparison of files with nested structure. Json output format
+[![asciicast](https://asciinema.org/a/V5kVKpxCTVaacEC615CTjFeJS.png)](https://asciinema.org/a/V5kVKpxCTVaacEC615CTjFeJS)
+

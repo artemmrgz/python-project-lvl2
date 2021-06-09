@@ -6,14 +6,29 @@ from gendiff import format
 
 
 def formatter(string_format='stylish'):
+    '''Gets CLI parser's format.
+
+    Args:
+        string_format: Formatting option
+
+    Returns:
+        Function of parse
+    '''
     formats = {
         'stylish': format.stylish,
-        'plain': format.plain
+        'plain': format.plain,
+        'json': format.json
     }
     return formats[string_format]
 
 
 def cli_parser():
+    '''Parse arguments.
+
+    Returns:
+        option: Inspect the command line, convert each argument
+                to the appropriate type
+    '''
     parser = argparse.ArgumentParser(description='Generate diff')
     parser.add_argument('first_file')
     parser.add_argument('second_file')
@@ -23,6 +38,14 @@ def cli_parser():
 
 
 def parse_file(file_path):
+    '''Takes content of file.
+
+    Args:
+        file_path: Path to file
+
+    Returns:
+        Parsed data
+    '''
     formats = {
         '.json': json.loads,
         '.yaml': yaml.safe_load,

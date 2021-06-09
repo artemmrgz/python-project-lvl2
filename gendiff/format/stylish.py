@@ -16,6 +16,15 @@ flags = {
 
 
 def to_stylish(difference, level=0):  # noqa: C901
+    '''Render difference to nested format.
+
+    Args:
+        difference (dict): Difference output
+        level (str): Nesting level of value
+
+    Returns:
+        String result
+    '''
     indent = level * DEFAULT_INDENT * ' '
     diff = []
     for key, value in sorted(difference.items()):

@@ -8,6 +8,15 @@ from gendiff.constants import (
 
 
 def to_plain(difference, path_of_keys=None):
+    '''Render difference to plain
+
+    Args:
+        difference (dict): difference input
+        path_of_keys (list): path to value
+
+    Returns:
+        String result
+    '''
     diff = []
 
     if path_of_keys is None:
