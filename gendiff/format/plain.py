@@ -1,4 +1,3 @@
-from gendiff.format.stylish import edit_message
 from gendiff.constants import (
     ADDED,
     CHANGED,
@@ -8,7 +7,7 @@ from gendiff.constants import (
 )
 
 
-def to_plain(difference, path_of_keys=None):
+def to_plain(difference, key_path=None):
     '''Render difference to plain
 
     Args:
@@ -20,52 +19,55 @@ def to_plain(difference, path_of_keys=None):
     '''
     diff = []
 
-    if path_of_keys is None:
-        path_of_keys = []
+    if not key_path:
+        key_path = []
 
     for key, value in sorted(difference.items()):
         flag, rest = value[0], value[1:]
         if flag == UNCHANGED:
             continue
-        string_diff(key, flag, rest, diff, path_of_keys)
-
+        string_diff(key, flag, rest, diff, key_path)
     return '\n'.join(diff)
 
 
-def add_added_node(key, value, diff, path_of_keys):
-    path_of_keys.append(key)
+def add_added_node(key, value, diff, key_path):
+    key_path.append(key)
     diff.append(
-        'Property {0} was added with value: {1}'.format(
-            '.'.join(path_of_keys), show_value(value[0])
+        'Property \'{0}\' was added with value: {1}'.format(
+            '.'.join(key_path), render_value(value[0])
         )
     )
+    key_path.pop()
 
 
-def add_removed_node(key, path_of_keys, diff):
-    path_of_keys.append(key)
+def add_removed_node(key, key_path, diff):
+    key_path.append(key)
     diff.append(
-        'Property {} was removed'.format(
-            '.'.join(path_of_keys)
+        'Property \'{}\' was removed'.format(
+            '.'.join(key_path)
         )
     )
+    key_path.pop()
 
 
-def add_changed_node(key, value, diff, path_of_keys):
-    path_of_keys.append(key)
+def add_changed_node(key, value, diff, key_path):
+    key_path.append(key)
     diff.append(
-        'Property {0} was updated. From {1} to {2}'.format(
-            '.'.join(path_of_keys), show_value(value[0]),
-            show_value(value[1])
+        'Property \'{0}\' was updated. From {1} to {2}'.format(
+            '.'.join(key_path), render_value(value[0]),
+            render_value(value[1])
         )
     )
+    key_path.pop()
 
 
-def add_nested_node(key, value, diff, path_of_keys):
-    path_of_keys.append(key)
-    diff.append(to_plain(value[0], path_of_keys))
+def add_nested_node(key, value, diff, key_path):
+    key_path.append(key)
+    diff.append(to_plain(value[0], key_path))
+    key_path.pop()
 
 
-def string_diff(key, flag, rest, diff, path_of_keys):
+def string_diff(key, flag, rest, diff, key_path):
     flags = {
         ADDED: add_added_node,
         REMOVED: add_removed_node,
@@ -74,13 +76,17 @@ def string_diff(key, flag, rest, diff, path_of_keys):
     }
 
     if flag == REMOVED:
-        flags[flag](key, path_of_keys, diff)
+        flags[flag](key, key_path, diff)
     else:
-        flags[flag](key, rest, diff, path_of_keys)
+        flags[flag](key, rest, diff, key_path)
 
 
-def show_value(value):
+def render_value(value):
     if isinstance(value, dict):
         return '[complex value]'
+    elif isinstance(value, bool):
+        return str(value).lower()
+    elif value is None:
+        return 'null'
     else:
-        return f'\'{edit_message(value)}\''
+        return f'\'{value}\''
