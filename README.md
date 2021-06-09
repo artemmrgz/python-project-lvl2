@@ -7,6 +7,10 @@
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/6c38e6f7fb09c7d598d8/test_coverage)](https://codeclimate.com/github/artemmrgz/python-project-lvl2/test_coverage)
 
+##Description
+Programm compares two structures of data and displays the difference.
+
+
 Comparison of json-files with flat structure
 [![asciicast](https://asciinema.org/a/tyny2zuqr2kiMn2M0XmBRGrxK.png)](https://asciinema.org/a/tyny2zuqr2kiMn2M0XmBRGrxK)
 
